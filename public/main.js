@@ -30,16 +30,26 @@ function clearTheme() {
 // For storing user's display name in cookies
 function storeName(displayName) {
     // Your code here
+    document.cookie = `name=${displayName}`;
 }
 
 // For restoring user's display name from cookies, if set in the past
 function restoreName() {
     // Your code here
+
+    let name = document.cookie
+    .split("; ")
+    .find(pairString => pairString.startsWith("name"));
+
+    if (name) {
+        setInputValue("display-name", name.split("=")[1]);
+    }
 }
 
 // For clearing user's display name from cookies
 function clearName() {
     // Your code here
+    document.cookie = "name=; max-age=0"
 }
 
 /* ========================================================================= */
